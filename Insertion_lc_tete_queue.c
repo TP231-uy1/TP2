@@ -8,7 +8,6 @@ typedef struct noeud{
 
 noeud *last = NULL;
 
-// Prototypes des fonctions
 void insertion_tete(int valeur);
 void insertion_queue(int valeur);
 void afficher_liste();
