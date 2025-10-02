@@ -1,0 +1,54 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+typedef struct cellule {
+    int val;
+    struct cellule* pre;
+    struct cellule* suiv;
+} cellule;
+
+cellule* l = NULL;
+
+void qcreation(int n) {
+    int i = 0;
+    int x;
+    cellule* N = NULL; // Pointeur pour le dernier élément de la liste
+
+    while (i < n) {
+        printf("Entrez un élément: ");
+        scanf("%d", &x);
+        
+        cellule* p = (cellule*)malloc(sizeof(cellule));
+        p->val = x; // Assigner la valeur
+        p->suiv = NULL; // Initialiser le pointeur suivant à NULL
+
+        if (l == NULL) { // Si la liste est vide
+            p->pre = NULL; // Pas de précédent
+            l = p; // Le nouvel élément devient la tête de la liste
+        } else {
+            p->pre = N; // Le précédent du nouvel élément est N
+            N->suiv = p; // Le suivant de N est le nouvel élément
+        }
+        
+        N = p; // Mettre à jour N pour le prochain élément
+        i++;
+    }
+}
+
+void afficherList(cellule* l) {
+    while (l != NULL) {
+        printf("%d <-> ", l->val);
+        l = l->suiv;
+    }
+    printf("NULL\n"); // Indiquer la fin de la liste
+}
+
+int main() {
+    int n;
+    printf("Entrez un nombre entier: ");
+    scanf("%d", &n);
+    qcreation(n);
+    afficherList(l);
+    return 0;
+}
+
